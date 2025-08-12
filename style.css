@@ -3,15 +3,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Changed to allow scrolling */
+    justify-content: flex-start;
     margin: 0;
     padding: 20px; /* Added padding for better appearance */
     background-color: #f4f4f4;
     min-height: 100vh; /* Changed to min-height to allow scrolling */
 }
-.button {
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 250px; /* Set a fixed width for the card to match the button */
+    margin: 10px; /* Spacing between cards */
+    position: relative; /* Needed for absolute positioning of description */
+}
+
+.card .button {
     display: inline-block;
-    margin: 10px;
     padding: 15px 25px;
     font-size: 16px;
     color: white;
@@ -20,11 +32,36 @@ body {
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s;
-    width: 250px; /* Set a fixed width for all buttons */
+    transition: transform 0.3s, background-color 0.3s;
+    width: 100%; /* Set button to take full width of the card */
+    box-sizing: border-box; /* Include padding and border in width */
 }
-.button:hover {
-    background-color: #0056b3;
-    color: red;
 
+.card .description {
+    display: none; /* Hidden by default */
+    margin-top: 5px; /* Space between button and description */
+    background-color: #ffffff; /* Background color for the description */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding for the description */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Shadow for depth */
+    width: 100%; /* Match the width of the card */
+    box-sizing: border-box; /* Include padding and border in width */
+    max-height: 60px; /* Set a maximum height for the description */
+    overflow: auto; /* Allow scrolling if content exceeds max height */
+}
+
+.card .button:hover {
+    transform: translateY(-10px) scale(1.05); /* Lift the button */
+    background-color: #0056b3; /* Darker background on hover */
+    color: red; /* Change text color on hover */
+}
+
+.card .button:hover + .description {
+    display: block; /* Show description when hovering over the button */
+}
+
+/* Optional: Add a shadow effect */
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
